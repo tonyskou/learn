@@ -486,7 +486,8 @@ function renderLearn(){
   var sylsLowerHTML = '';
   syls.forEach(function(s,i){
     var col = learned ? '#3B6D11' : colors[i % colors.length];
-    sylsHTML += '<span class="syl" style="color:'+col+';">'+s.toUpperCase()+'</span>';
+    var upperSyl = s.toUpperCase().replace(/[ΆΈΉΊΌΎΏ]/g,function(c){ return {Ά:'Α',Έ:'Ε',Ή:'Η',Ί:'Ι',Ό:'Ο',Ύ:'Υ',Ώ:'Ω'}[c]; });
+    sylsHTML += '<span class="syl" style="color:'+col+';">'+upperSyl+'</span>';
 
     var lowerSyl = s;
     if(i === syls.length-1 && lowerSyl.slice(-1) === 'σ'){
