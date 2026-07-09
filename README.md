@@ -1,4 +1,17 @@
-# 📖 Μαθαίνω! — Οδηγίες Εγκατάστασης
+# 📖 Διαβάζω! — Οδηγίες Εγκατάστασης
+
+## Βήμα 1 — Ανέβασε στο GitHub Pages (δωρεάν)
+
+1. Πήγαινε στο **github.com** → κάνε δωρεάν λογαριασμό
+2. Πάτησε **"New repository"** → Όνομα: `diabazo` → Public → **"Create repository"**
+3. Πάτησε **"uploading an existing file"** και ανέβασε ΟΛΑ τα αρχεία:
+   - index.html, words.js, manifest.json, sw.js
+   - icon-180.png, icon-192.png, icon-512.png
+4. Πάτησε **"Commit changes"**
+5. Πήγαινε **Settings → Pages → Branch: main → Save**
+6. Σε 2 λεπτά θα έχεις URL: `https://ΧΡΗΣΤΗΣ.github.io/diabazo/`
+
+---
 
 ## Εγκατάσταση σε Android (Chrome)
 
