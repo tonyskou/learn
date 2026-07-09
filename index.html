@@ -486,9 +486,9 @@ function renderLearn(){
   var sylsLowerHTML = '';
   syls.forEach(function(s,i){
     var col = learned ? '#3B6D11' : colors[i % colors.length];
-    sylsHTML += '<span class="syl" style="color:'+col+';">'+s+'</span>';
+    sylsHTML += '<span class="syl" style="color:'+col+';">'+s.toUpperCase()+'</span>';
 
-    var lowerSyl = s.toLowerCase();
+    var lowerSyl = s;
     if(i === syls.length-1 && lowerSyl.slice(-1) === 'σ'){
       lowerSyl = lowerSyl.slice(0,-1) + 'ς';
     }
