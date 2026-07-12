@@ -419,6 +419,61 @@
     .ab-letter-name { font-size: 13px; }
   }
 
+  /* STORIES TAB */
+  .story-card {
+    background: var(--bg2); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 14px; margin-bottom: 10px;
+    cursor: pointer; -webkit-transition: all 0.12s; transition: all 0.12s;
+  }
+  .story-card:active { background: var(--purple-light); border-color: #AFA9EC; }
+  .story-card-id { font-size: 12px; color: var(--text3); }
+  .story-card-title { font-size: 16px; font-weight: 700; color: var(--purple-dark); margin-top: 3px; }
+  .story-card-preview {
+    font-size: 13px; color: var(--text2); margin-top: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .story-back-btn {
+    background: none; border: 1px solid var(--border);
+    border-radius: 9px; padding: 8px 16px; font-size: 14px;
+    cursor: pointer; color: var(--purple); font-family: inherit;
+    margin-bottom: 14px; -webkit-appearance: none; appearance: none;
+  }
+  .story-back-btn:active { background: var(--purple-light); }
+
+  .story-detail-title {
+    font-size: 20px; font-weight: 800; color: var(--purple-dark);
+    margin-bottom: 16px; text-align: center;
+  }
+
+  .story-text {
+    font-size: 18px; line-height: 2.2; text-align: center;
+    background: var(--bg2); border-radius: 16px;
+    padding: 20px 16px; border: 1.5px solid var(--border);
+  }
+
+  .story-word {
+    display: inline-block; cursor: pointer;
+    padding: 2px 4px; border-radius: 6px;
+    -webkit-transition: all 0.1s; transition: all 0.1s;
+    touch-action: pan-y;
+    margin: 0 1px;
+  }
+  .story-word:active {
+    background: var(--purple-light);
+    -webkit-transform: scale(1.08); transform: scale(1.08);
+  }
+  .story-punct { display: inline; }
+
+  .story-speak-all-btn {
+    display: block; margin: 14px auto 0;
+    background: var(--purple); color: white; border: none;
+    border-radius: 14px; padding: 14px 28px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    font-family: inherit; -webkit-appearance: none; appearance: none;
+  }
+  .story-speak-all-btn:active { opacity: 0.85; }
+
   /* Scrollbar visibility on desktop */
   main::-webkit-scrollbar {
     width: 6px;
@@ -478,6 +533,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 
 <script src="words.js"></script>
+<script src="stories.js"></script>
+<script src="vocabulary.js"></script>
 <script>
 
 // ══════════════════════════════════════════════════════
@@ -811,6 +868,7 @@ function showChildPicker(children) {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-stories').style.display = 'none';
 }
 
 function selectChild(name) {
@@ -820,6 +878,7 @@ function selectChild(name) {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-stories').style.display = 'none';
   loadFromCloud();
 }
 
@@ -835,6 +894,7 @@ function showChildSetup() {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-stories').style.display = 'none';
 }
 
 function saveChildNameFromSetup() {
@@ -847,6 +907,7 @@ function saveChildNameFromSetup() {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-stories').style.display = 'none';
   loadFromCloud();
 }
 
@@ -940,12 +1001,14 @@ function showAppShell() {
       '<div class="tab" id="tab-btn-review" onclick="switchTab(\'review\',this)">🔄 Επανάληψη</div>' +
       '<div class="tab" id="tab-btn-stats" onclick="switchTab(\'stats\',this)">⭐ Πρόοδος</div>' +
       '<div class="tab" id="tab-btn-ab" onclick="switchTab(\'ab\',this)">🔤 ΑΒ</div>' +
+      '<div class="tab" id="tab-btn-stories" onclick="switchTab(\'stories\',this)">📖 Ιστορίες</div>' +
     '</div>' +
     '<main>' +
       '<div id="tab-learn"></div>' +
       '<div id="tab-review" style="display:none;"></div>' +
       '<div id="tab-stats" style="display:none;"></div>' +
       '<div id="tab-ab" style="display:none;"></div>' +
+      '<div id="tab-stories" style="display:none;"></div>' +
     '</main>';
 
   // Show logout button if authenticated
@@ -968,10 +1031,12 @@ function switchTab(name, el){
   document.getElementById('tab-review').style.display = name==='review' ? '' : 'none';
   document.getElementById('tab-stats').style.display  = name==='stats'  ? '' : 'none';
   document.getElementById('tab-ab').style.display     = name==='ab'     ? '' : 'none';
+  document.getElementById('tab-stories').style.display = name==='stories' ? '' : 'none';
   currentTab = name;
   if(name==='review') renderReview();
   if(name==='stats')  renderStats();
   if(name==='ab')     renderAbTab();
+  if(name==='stories') renderStories();
 }
 
 // ── LEARN ──
@@ -1181,7 +1246,7 @@ const ALPHABET = [
   {upper:'Ρ',lower:'ρ',name:'ρο',say:'ρο'},{upper:'Σ',lower:'σ/ς',name:'σίγμα',say:'σίγμα'},
   {upper:'Τ',lower:'τ',name:'ταυ',say:'ταυ'},{upper:'Υ',lower:'υ',name:'ύψιλον',say:'ύψιλον'},
   {upper:'Φ',lower:'φ',name:'φι',say:'φι'},{upper:'Χ',lower:'χ',name:'χι',say:'χι'},
-  {upper:'Ψ',lower:'ψ',name:'ψι',say:'ψι'},{upper:'Ω',lower:'ω',name:'ωμέγα',say:'ωμέγα'}
+  {upper:'Ψ',lower:'ψ',name:'ψι',say:'πσι'},{upper:'Ω',lower:'ω',name:'ωμέγα',say:'ωμέγα'}
 ];
 
 const VOWEL_COMBOS = [
@@ -1208,37 +1273,44 @@ const GRAMMAR_RULES = [
   {
     title:'Τι είναι ο τόνος;',
     text:'Ο τόνος (´) είναι ένα μικρό σημαδάκι που μπαίνει πάνω από ένα φωνήεν. Μας λέει ποια συλλαβή να πούμε πιο δυνατά! Όλες οι λέξεις με πάνω από μία συλλαβή έχουν τόνο.',
-    examples:['μα<strong>μά</strong>','<strong>σπί</strong>τι','κα<strong>λη</strong>μέρα']
+    examples:['μα<strong>μά</strong>','<strong>σπί</strong>τι','κα<strong>λη</strong>μέρα'],
+    say:'Ο τόνος είναι ένα μικρό σημαδάκι που μπαίνει πάνω από ένα φωνήεν. Μας λέει ποια συλλαβή να πούμε πιο δυνατά. Όλες οι λέξεις με πάνω από μία συλλαβή έχουν τόνο. Παραδείγματα: μαμά, σπίτι, καλημέρα.'
   },
   {
     title:'Τα φωνήεντα (7)',
     text:'Τα φωνήεντα είναι γράμματα που τα λέμε με τη φωνή μας χωρίς να κλείνει το στόμα. Είναι 7: <span class="ab-grammar-highlight">α, ε, η, ι, ο, υ, ω</span>. Κάθε συλλαβή έχει ένα τουλάχιστον φωνήεν.',
-    examples:['<strong>α</strong>-γά-πη','<strong>ε</strong>-<strong>ι</strong>-ρή-νη']
+    examples:['<strong>α</strong>-γά-πη','<strong>ε</strong>-<strong>ι</strong>-ρή-νη'],
+    say:'Τα φωνήεντα είναι γράμματα που τα λέμε με τη φωνή μας χωρίς να κλείνει το στόμα. Είναι 7: άλφα, έψιλον, ήτα, γιώτα, όμικρον, ύψιλον, ωμέγα. Κάθε συλλαβή έχει ένα τουλάχιστον φωνήεν.'
   },
   {
     title:'Τα σύμφωνα (17)',
     text:'Τα σύμφωνα είναι όλα τα υπόλοιπα γράμματα. Για να τα πούμε χρειαζόμαστε βοήθεια από ένα φωνήεν. Είναι 17: <span class="ab-grammar-highlight">β, γ, δ, ζ, θ, κ, λ, μ, ν, ξ, π, ρ, σ, τ, φ, χ, ψ</span>.',
-    examples:['<strong>β</strong>ή-τα','<strong>λ</strong>ά-μδα']
+    examples:['<strong>β</strong>ή-τα','<strong>λ</strong>ά-μδα'],
+    say:'Τα σύμφωνα είναι όλα τα υπόλοιπα γράμματα. Για να τα πούμε χρειαζόμαστε βοήθεια από ένα φωνήεν. Είναι 17: βήτα, γάμα, δέλτα, ζήτα, θήτα, κάπα, λάμδα, μι, νι, ξι, πι, ρο, σίγμα, ταυ, φι, χι, ψι.'
   },
   {
     title:'Το τελικό σίγμα (ς)',
     text:'Το <span class="ab-grammar-highlight">σ</span> στο τέλος μιας λέξης γράφεται <span class="ab-grammar-highlight">ς</span>. Π.χ. «ο φίλος», όχι «ο φίλοσ». Στην αρχή ή στη μέση γράφεται σ.',
-    examples:['<strong>σ</strong>κύλο<strong>ς</strong>','φίλο<strong>ς</strong>']
+    examples:['<strong>σ</strong>κύλο<strong>ς</strong>','φίλο<strong>ς</strong>'],
+    say:'Το σίγμα στο τέλος μιας λέξης γράφεται σίγμα τελικό. Για παράδειγμα «ο φίλος», όχι «ο φίλοσ». Στην αρχή ή στη μέση γράφεται κανονικό σίγμα.'
   },
   {
     title:'Δύο φωνήεντα μαζί (δίψηφα)',
     text:'Όταν δύο φωνήεντα είναι μαζί, συχνά προφέρονται σαν ένα! Π.χ. το <span class="ab-grammar-highlight">αι</span> προφέρεται «ε», το <span class="ab-grammar-highlight">ει</span> και το <span class="ab-grammar-highlight">οι</span> προφέρονται «ι». Δες παραπάνω στην ενότητα «Δίψηφα Φωνήεντα».',
-    examples:['κ<strong>αι</strong> → κε','<strong>ει</strong>ρήνη → ιρήνη']
+    examples:['κ<strong>αι</strong> → κε','<strong>ει</strong>ρήνη → ιρήνη'],
+    say:'Όταν δύο φωνήεντα είναι μαζί, συχνά προφέρονται σαν ένα. Για παράδειγμα: το άλφα γιώτα προφέρεται ε, το έψιλον γιώτα και το όμικρον γιώτα προφέρονται ι. Δες παραπάνω στην ενότητα Δίψηφα Φωνήεντα.'
   },
   {
     title:'Δύο σύμφωνα μαζί (δίψηφα)',
     text:'Μερικά σύμφωνα όταν είναι μαζί φτιάχνουν έναν καινούριο ήχο! Π.χ. <span class="ab-grammar-highlight">μπ</span> ακούγεται σαν «μπ», <span class="ab-grammar-highlight">ντ</span> σαν «ντ». Δες παραπάνω στην ενότητα «Δίψηφα Σύμφωνα».',
-    examples:['<strong>μπ</strong>αμπάς','<strong>ντ</strong>ομάτα']
+    examples:['<strong>μπ</strong>αμπάς','<strong>ντ</strong>ομάτα'],
+    say:'Μερικά σύμφωνα όταν είναι μαζί φτιάχνουν έναν καινούριο ήχο. Για παράδειγμα: το μι πι ακούγεται σαν μπα, το νι ταυ σαν ντα. Δες παραπάνω στην ενότητα Δίψηφα Σύμφωνα.'
   },
   {
     title:'Τι είναι η συλλαβή;',
     text:'Η λέξη χωρίζεται σε μικρά κομμάτια που τα λέμε συλλαβές. Κάθε συλλαβή έχει τουλάχιστον ένα φωνήεν. Χτυπάμε παλαμάκια για να τις μετρήσουμε! 👏',
-    examples:['<strong>κα</strong>-<strong>λη</strong>-<strong>μέ</strong>-<strong>ρα</strong> (4 👏)','<strong>σπί</strong>-<strong>τι</strong> (2 👏)']
+    examples:['<strong>κα</strong>-<strong>λη</strong>-<strong>μέ</strong>-<strong>ρα</strong> (4 👏)','<strong>σπί</strong>-<strong>τι</strong> (2 👏)'],
+    say:'Η λέξη χωρίζεται σε μικρά κομμάτια που τα λέμε συλλαβές. Κάθε συλλαβή έχει τουλάχιστον ένα φωνήεν. Χτυπάμε παλαμάκια για να τις μετρήσουμε. Για παράδειγμα: καλημέρα έχει τέσσερις συλλαβές. Σπίτι έχει δύο συλλαβές.'
   }
 ];
 
@@ -1287,8 +1359,8 @@ function renderAbTab() {
   html += '<div class="ab-section">';
   html += '<div class="ab-section-title">📖 Απλή Γραμματική</div>';
   GRAMMAR_RULES.forEach(function(g) {
-    html += '<div class="ab-grammar-card">';
-    html += '<div class="ab-grammar-title">'+g.title+'</div>';
+    html += '<div class="ab-grammar-card" onclick="speakLetter(\''+g.say.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-grammar-title">🔊 '+g.title+'</div>';
     html += '<div class="ab-grammar-text">'+g.text+'</div>';
     if (g.examples && g.examples.length > 0) {
       html += '<div style="margin-top:8px;">';
@@ -1309,10 +1381,92 @@ function renderAbTab() {
 
 function speakLetter(text) {
   if(!window.speechSynthesis) return;
-  var u = new SpeechSynthesisUtterance(text);
-  u.lang = 'el-GR'; u.rate = 0.65;
   window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(u);
+  setTimeout(function() {
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'el-GR'; u.rate = 1.0;
+    window.speechSynthesis.speak(u);
+  }, 120);
+}
+
+// ── STORIES ──
+var currentStoryId = 0;
+
+function renderStories() {
+  var html = '<div class="ab-section-title">📖 Διάλεξε μια ιστορία</div>';
+  html += '<p style="font-size:13px;color:var(--text3);margin-bottom:14px;">Πάτησε σε μια ιστορία. Μετά πάτησε κάθε λέξη για να την ακούσεις 🔊</p>';
+
+  STORIES.forEach(function(s) {
+    var preview = s.text.length > 60 ? s.text.substring(0,60) + '...' : s.text;
+    html += '<div class="story-card" onclick="openStory('+s.id+')">';
+    html += '<div class="story-card-id">Ιστορία '+s.id+'</div>';
+    html += '<div class="story-card-title">'+s.title+'</div>';
+    html += '<div class="story-card-preview">'+preview+'</div>';
+    html += '</div>';
+  });
+
+  html += '<div style="height:60px;"></div>';
+  document.getElementById('tab-stories').innerHTML = html;
+}
+
+function openStory(id) {
+  currentStoryId = id;
+  var story = STORIES.find(function(s) { return s.id === id; });
+  if (!story) return;
+
+  // Build clickable word view
+  var wordsHTML = '';
+  // Split text into words + punctuation tokens
+  var tokens = story.text.match(/[Α-Ωα-ωΆΈΉΊΌΎΏάέήίόύώΐΰϊϋ]+|[^Α-Ωα-ωΆΈΉΊΌΎΏάέήίόύώΐΰϊϋ]+/g) || [];
+  tokens.forEach(function(token) {
+    // Check if it's a word (contains Greek letters)
+    if (/[Α-Ωα-ωΆΈΉΊΌΎΏάέήίόύώΐΰϊϋ]/.test(token)) {
+      var word = token;
+      var cleanWord = word.replace(/[.,!?;:'"«»()\[\]]/g, '');
+      wordsHTML += '<span class="story-word" onclick="speakWord(event, \''+cleanWord.replace(/'/g,"\\'")+'\')">'+word+'</span>';
+    } else {
+      wordsHTML += '<span class="story-punct">'+token+'</span>';
+    }
+  });
+
+  var html = '<button class="story-back-btn" onclick="renderStories()">← Πίσω στις ιστορίες</button>';
+  html += '<div class="story-detail-title">'+story.title+'</div>';
+  html += '<div class="story-text">'+wordsHTML+'</div>';
+  html += '<button class="story-speak-all-btn" onclick="speakStory('+id+')">🔊 Άκου όλη την ιστορία</button>';
+  html += '<div style="height:40px;"></div>';
+
+  document.getElementById('tab-stories').innerHTML = html;
+}
+
+function speakWord(event, word) {
+  // Stop click from propagating to parent
+  if (event) event.stopPropagation();
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  setTimeout(function() {
+    var u = new SpeechSynthesisUtterance(word);
+    u.lang = 'el-GR'; u.rate = 0.55;
+    window.speechSynthesis.speak(u);
+  }, 50);
+}
+
+function speakStory(id) {
+  if (!window.speechSynthesis) return;
+  var story = STORIES.find(function(s) { return s.id === id; });
+  if (!story) return;
+  window.speechSynthesis.cancel();
+  // Split into sentences for natural pauses
+  var sentences = story.text.split(/(?<=[.!?])\s+/);
+  var i = 0;
+  function next() {
+    if (i >= sentences.length) return;
+    var u = new SpeechSynthesisUtterance(sentences[i]);
+    u.lang = 'el-GR'; u.rate = 0.7;
+    u.onend = function() { i++; setTimeout(next, 400); };
+    u.onerror = function() { i++; setTimeout(next, 400); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
 }
 
 // ── INIT ──
