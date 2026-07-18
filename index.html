@@ -421,6 +421,140 @@
     .ab-letter-name { font-size: 13px; }
   }
 
+  /* NUMBERS / COUNTING GAME */
+  .count-game-card {
+    background: var(--bg2); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 16px; text-align: center;
+  }
+  .count-score-row {
+    display: -webkit-flex; display: flex;
+    -webkit-justify-content: space-between; justify-content: space-between;
+    -webkit-align-items: center; align-items: center;
+    font-size: 13px; color: var(--text3); margin-bottom: 12px;
+  }
+  .count-reset-btn {
+    background: none; border: none; color: var(--purple);
+    font-size: 12px; text-decoration: underline; cursor: pointer;
+    font-family: inherit; -webkit-appearance: none; appearance: none;
+  }
+  .count-question { font-size: 16px; font-weight: 700; color: var(--purple-dark); margin-bottom: 14px; }
+  .count-objects {
+    display: -webkit-flex; display: flex; flex-wrap: wrap;
+    gap: 8px; -webkit-justify-content: center; justify-content: center;
+    margin-bottom: 18px; min-height: 60px; -webkit-align-items: center; align-items: center;
+  }
+  .count-emoji { font-size: 32px; line-height: 1; }
+  .count-choices {
+    display: -webkit-flex; display: flex; flex-wrap: wrap;
+    gap: 10px; -webkit-justify-content: center; justify-content: center;
+  }
+  .count-choice-btn {
+    background: var(--purple-light); border: 1.5px solid var(--border);
+    border-radius: 12px; width: 56px; height: 56px;
+    font-size: 22px; font-weight: 800; color: var(--purple-dark); cursor: pointer;
+    font-family: inherit; -webkit-appearance: none; appearance: none;
+  }
+  .count-choice-btn:active { opacity: 0.85; }
+  .count-choice-btn.correct { background: var(--green-light); border-color: var(--green-border); color: var(--green); }
+  .count-choice-btn.wrong { background: #FFF0F0; border-color: #FFD0D0; color: var(--red); }
+  .count-feedback { margin-top: 14px; font-size: 14px; font-weight: 600; min-height: 20px; }
+  .count-feedback.correct { color: var(--green); }
+  .count-feedback.wrong { color: var(--red); }
+
+  @media (min-width: 680px) {
+    .count-emoji { font-size: 40px; }
+    .count-choice-btn { width: 64px; height: 64px; font-size: 26px; }
+  }
+
+  /* NUMBER BUILDER */
+  .number-builder-card {
+    background: var(--bg2); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 16px; text-align: center;
+  }
+  .builder-digits {
+    display: -webkit-flex; display: flex; flex-wrap: wrap;
+    gap: 10px; -webkit-justify-content: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .builder-col {
+    display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column;
+    -webkit-align-items: center; align-items: center; gap: 4px;
+  }
+  .builder-btn {
+    background: var(--purple-light); border: none; border-radius: 8px;
+    width: 44px; height: 32px; font-size: 16px; color: var(--purple-dark); cursor: pointer;
+    font-family: inherit; -webkit-appearance: none; appearance: none;
+  }
+  .builder-btn:active { background: #D8D4F8; }
+  .builder-digit-value { font-size: 26px; font-weight: 800; color: var(--purple-dark); width: 44px; text-align: center; }
+  .builder-col-label { font-size: 11px; color: var(--text3); margin-top: 2px; text-align: center; max-width: 64px; line-height: 1.2; }
+  .builder-number {
+    font-size: 34px; font-weight: 800; color: var(--coral); margin: 10px 0 6px;
+    cursor: pointer; -webkit-user-select: none; user-select: none;
+  }
+  .builder-speak { font-size: 22px; vertical-align: middle; }
+  .builder-words { font-size: 16px; font-weight: 600; color: var(--purple); min-height: 22px; }
+
+  @media (min-width: 680px) {
+    .builder-digit-value { font-size: 32px; }
+    .builder-number { font-size: 40px; }
+  }
+
+  /* TIME TAB */
+  .time-live-card {
+    background: var(--bg2); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 20px; text-align: center;
+  }
+  .time-clock-wrap { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-bottom: 12px; }
+  .clock-face { width: 170px; height: 170px; display: block; }
+  .clock-circle { fill: var(--bg2); stroke: var(--purple-dark); stroke-width: 4; }
+  .clock-num { font-size: 15px; font-weight: 700; fill: var(--purple-dark); font-family: inherit; }
+  .clock-hour-hand { stroke: var(--purple-dark); stroke-width: 8; stroke-linecap: round; }
+  .clock-minute-hand { stroke: var(--purple); stroke-width: 5; stroke-linecap: round; }
+  .clock-center { fill: var(--coral); }
+  .time-digital { font-size: 38px; font-weight: 800; color: var(--purple-dark); margin: 10px 0 6px; letter-spacing: 1px; }
+  .time-period-banner {
+    display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center;
+    -webkit-justify-content: center; justify-content: center; gap: 10px;
+    border-radius: 12px; padding: 12px 16px; margin-top: 10px; font-size: 14px; font-weight: 700; text-align: left;
+    cursor: pointer; -webkit-user-select: none; user-select: none;
+  }
+  .time-period-banner .tpb-icon { font-size: 26px; flex-shrink: 0; }
+  .tpb-morning { background: #FFF6D8; color: #8a6d00; }
+  .tpb-noon { background: #FFE8D8; color: #a8460b; }
+  .tpb-afternoon { background: #FFE1EC; color: #9c3a63; }
+  .tpb-evening { background: #E3E1FA; color: #3C3489; }
+
+  .period-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (min-width: 680px) { .period-grid { grid-template-columns: repeat(4, 1fr); } }
+  .period-card {
+    border-radius: 14px; padding: 14px 10px; text-align: center; cursor: pointer;
+    border: 1.5px solid var(--border); -webkit-user-select: none; user-select: none;
+  }
+  .period-card-icon { font-size: 28px; margin-bottom: 4px; }
+  .period-card-label { font-size: 15px; font-weight: 800; margin-bottom: 2px; }
+  .period-card-range { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+  .period-card-hint { font-size: 12px; line-height: 1.3; }
+  .period-card.period-morning { background: #FFF6D8; border-color: #F5DE8E; }
+  .period-card.period-morning .period-card-label { color: #8a6d00; }
+  .period-card.period-noon { background: #FFE8D8; border-color: #F2C39A; }
+  .period-card.period-noon .period-card-label { color: #a8460b; }
+  .period-card.period-afternoon { background: #FFE1EC; border-color: #F2A9C4; }
+  .period-card.period-afternoon .period-card-label { color: #9c3a63; }
+  .period-card.period-evening { background: #E3E1FA; border-color: #AFA9EC; }
+  .period-card.period-evening .period-card-label { color: #3C3489; }
+
+  .time-choice-btn {
+    background: var(--purple-light); border: 1.5px solid var(--border); border-radius: 12px;
+    min-width: 64px; height: 56px; padding: 0 14px;
+    font-size: 18px; font-weight: 800; color: var(--purple-dark); cursor: pointer;
+    font-family: inherit; -webkit-appearance: none; appearance: none;
+  }
+  .time-choice-btn:active { opacity: 0.85; }
+  .time-choice-btn.correct { background: var(--green-light); border-color: var(--green-border); color: var(--green); }
+  .time-choice-btn.wrong { background: #FFF0F0; border-color: #FFD0D0; color: var(--red); }
+  .period-pick-btn { font-size: 14px; height: auto; min-height: 56px; padding: 10px 14px; white-space: normal; }
+
   /* STORIES TAB */
   .story-card {
     background: var(--bg2); border: 1.5px solid var(--border);
@@ -870,6 +1004,8 @@ function showChildPicker(children) {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-numbers').style.display = 'none';
+  document.getElementById('tab-time').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
 }
 
@@ -880,6 +1016,8 @@ function selectChild(name) {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-numbers').style.display = 'none';
+  document.getElementById('tab-time').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
   loadFromCloud();
 }
@@ -896,6 +1034,8 @@ function showChildSetup() {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-numbers').style.display = 'none';
+  document.getElementById('tab-time').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
 }
 
@@ -909,6 +1049,8 @@ function saveChildNameFromSetup() {
   document.getElementById('tab-review').style.display = 'none';
   document.getElementById('tab-stats').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
+  document.getElementById('tab-numbers').style.display = 'none';
+  document.getElementById('tab-time').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
   loadFromCloud();
 }
@@ -1003,6 +1145,8 @@ function showAppShell() {
       '<div class="tab" id="tab-btn-review" onclick="switchTab(\'review\',this)">🔄 Επανάληψη</div>' +
       '<div class="tab" id="tab-btn-stats" onclick="switchTab(\'stats\',this)">⭐ Πρόοδος</div>' +
       '<div class="tab" id="tab-btn-ab" onclick="switchTab(\'ab\',this)">🔤 ΑΒ</div>' +
+      '<div class="tab" id="tab-btn-numbers" onclick="switchTab(\'numbers\',this)">🔢 Αριθμοί</div>' +
+      '<div class="tab" id="tab-btn-time" onclick="switchTab(\'time\',this)">🕐 Ώρα</div>' +
       '<div class="tab" id="tab-btn-stories" onclick="switchTab(\'stories\',this)">📖 Ιστορίες</div>' +
     '</div>' +
     '<main>' +
@@ -1010,6 +1154,8 @@ function showAppShell() {
       '<div id="tab-review" style="display:none;"></div>' +
       '<div id="tab-stats" style="display:none;"></div>' +
       '<div id="tab-ab" style="display:none;"></div>' +
+      '<div id="tab-numbers" style="display:none;"></div>' +
+      '<div id="tab-time" style="display:none;"></div>' +
       '<div id="tab-stories" style="display:none;"></div>' +
     '</main>';
 
@@ -1033,11 +1179,16 @@ function switchTab(name, el){
   document.getElementById('tab-review').style.display = name==='review' ? '' : 'none';
   document.getElementById('tab-stats').style.display  = name==='stats'  ? '' : 'none';
   document.getElementById('tab-ab').style.display     = name==='ab'     ? '' : 'none';
+  document.getElementById('tab-numbers').style.display = name==='numbers' ? '' : 'none';
+  document.getElementById('tab-time').style.display = name==='time' ? '' : 'none';
   document.getElementById('tab-stories').style.display = name==='stories' ? '' : 'none';
   currentTab = name;
+  if(name!=='time') stopLiveClock();
   if(name==='review') renderReview();
   if(name==='stats')  renderStats();
   if(name==='ab')     renderAbTab();
+  if(name==='numbers') renderNumbersTab();
+  if(name==='time')    renderTimeTab();
   if(name==='stories') renderStories();
 }
 
@@ -1404,6 +1555,566 @@ function speakLetter(text) {
     u.lang = 'el-GR'; u.rate = 1.0;
     window.speechSynthesis.speak(u);
   }, 120);
+}
+
+// ── NUMBERS TAB ──
+const NUMBERS = [
+  {n:1,w:'ένα'},{n:2,w:'δύο'},{n:3,w:'τρία'},{n:4,w:'τέσσερα'},{n:5,w:'πέντε'},
+  {n:6,w:'έξι'},{n:7,w:'εφτά'},{n:8,w:'οκτώ'},{n:9,w:'εννιά'},{n:10,w:'δέκα'},
+  {n:11,w:'έντεκα'},{n:12,w:'δώδεκα'},{n:13,w:'δεκατρία'},{n:14,w:'δεκατέσσερα'},{n:15,w:'δεκαπέντε'},
+  {n:16,w:'δεκαέξι'},{n:17,w:'δεκαεφτά'},{n:18,w:'δεκαοκτώ'},{n:19,w:'δεκαεννιά'},{n:20,w:'είκοσι'}
+];
+
+const COUNT_OBJECTS = [
+  {emoji:'🍎',name:'μήλα'},{emoji:'🐱',name:'γάτες'},{emoji:'⭐',name:'αστέρια'},
+  {emoji:'🐶',name:'σκύλοι'},{emoji:'🎈',name:'μπαλόνια'},{emoji:'🌸',name:'λουλούδια'},
+  {emoji:'🚗',name:'αυτοκίνητα'},{emoji:'🐟',name:'ψάρια'},{emoji:'🍌',name:'μπανάνες'},
+  {emoji:'🦋',name:'πεταλούδες'},{emoji:'🐣',name:'πουλάκια'},{emoji:'🍇',name:'σταφύλια'}
+];
+
+const NUMBER_RULES = [
+  {
+    title:'Τι είναι οι δεκάδες;',
+    text:'Όταν μετράμε δέκα μονάδες μαζί, φτιάχνουμε μία <span class="ab-grammar-highlight">δεκάδα</span>. Δύο δεκάδες κάνουν το είκοσι, τρεις δεκάδες το τριάντα, και συνεχίζουμε μέχρι να φτάσουμε στο εκατό!',
+    examples:['10','20','30','100'],
+    say:'Όταν μετράμε δέκα μονάδες μαζί, φτιάχνουμε μία δεκάδα. Δύο δεκάδες κάνουν το είκοσι, τρεις δεκάδες το τριάντα, και συνεχίζουμε μέχρι να φτάσουμε στο εκατό.'
+  },
+  {
+    title:'Τι είναι οι εκατοντάδες;',
+    text:'Δέκα δεκάδες μαζί φτιάχνουν μία <span class="ab-grammar-highlight">εκατοντάδα</span> — δηλαδή το εκατό! Δύο εκατοντάδες είναι το διακόσια, τρεις εκατοντάδες το τριακόσια, και συνεχίζουμε μέχρι το χίλια!',
+    examples:['100','200','500','1.000'],
+    say:'Δέκα δεκάδες μαζί φτιάχνουν μία εκατοντάδα, δηλαδή το εκατό. Δύο εκατοντάδες είναι το διακόσια, τρεις εκατοντάδες το τριακόσια, και συνεχίζουμε μέχρι το χίλια.'
+  },
+  {
+    title:'Τι είναι οι χιλιάδες;',
+    text:'Δέκα εκατοντάδες μαζί φτιάχνουν μία <span class="ab-grammar-highlight">χιλιάδα</span> — δηλαδή το χίλια! Δύο χιλιάδες, τρεις χιλιάδες... και συνεχίζουμε μέχρι να φτάσουμε στις δέκα χιλιάδες!',
+    examples:['1.000','2.000','5.000','10.000'],
+    say:'Δέκα εκατοντάδες μαζί φτιάχνουν μία χιλιάδα, δηλαδή το χίλια. Δύο χιλιάδες, τρεις χιλιάδες, και συνεχίζουμε μέχρι να φτάσουμε στις δέκα χιλιάδες.'
+  },
+  {
+    title:'Πώς φτιάχνουμε μεγάλους αριθμούς;',
+    text:'Ένας μεγάλος αριθμός έχει χιλιάδες, εκατοντάδες, δεκάδες και μονάδες, όλα μαζί! Για παράδειγμα, το <span class="ab-grammar-highlight">3.457</span> είναι 3 χιλιάδες, 4 εκατοντάδες, 5 δεκάδες και 7 μονάδες: «τρεις χιλιάδες τετρακόσια πενήντα εφτά».',
+    examples:['3.457','1.203','8.050'],
+    say:'Ένας μεγάλος αριθμός έχει χιλιάδες, εκατοντάδες, δεκάδες και μονάδες, όλα μαζί. Για παράδειγμα, το τρεις χιλιάδες τετρακόσια πενήντα εφτά, γράφεται 3457.'
+  }
+];
+
+var countScore = {correct:0, total:0};
+var countCurrentTarget = 0;
+var builderDigits = {th:0, h:0, t:0, u:0};
+
+function formatNumberGr(n) {
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function numberToGreekWords(n) {
+  if (n === 0) return 'μηδέν';
+  if (n > 10000) return String(n);
+  var ONES = ['','ένα','δύο','τρία','τέσσερα','πέντε','έξι','εφτά','οκτώ','εννιά'];
+  var TEENS = ['δέκα','έντεκα','δώδεκα','δεκατρία','δεκατέσσερα','δεκαπέντε','δεκαέξι','δεκαεφτά','δεκαοκτώ','δεκαεννιά'];
+  var TENS = ['','','είκοσι','τριάντα','σαράντα','πενήντα','εξήντα','εβδομήντα','ογδόντα','ενενήντα'];
+  var HUNDREDS = ['','εκατό','διακόσια','τριακόσια','τετρακόσια','πεντακόσια','εξακόσια','εφτακόσια','οκτακόσια','εννιακόσια'];
+  var THOUSAND_ONES = {2:'δύο',3:'τρεις',4:'τέσσερις',5:'πέντε',6:'έξι',7:'εφτά',8:'οκτώ',9:'εννιά',10:'δέκα'};
+
+  var parts = [];
+  var thousands = Math.floor(n/1000);
+  var rem = n % 1000;
+
+  if (thousands > 0) {
+    if (thousands === 1) parts.push('χίλια');
+    else parts.push((THOUSAND_ONES[thousands] || String(thousands)) + ' χιλιάδες');
+  }
+  if (rem > 0) {
+    var h = Math.floor(rem/100);
+    var hr = rem % 100;
+    if (h > 0) parts.push(HUNDREDS[h]);
+    if (hr > 0) {
+      if (hr < 10) parts.push(ONES[hr]);
+      else if (hr < 20) parts.push(TEENS[hr-10]);
+      else {
+        var t = Math.floor(hr/10), o = hr % 10;
+        parts.push(o > 0 ? TENS[t] + ' ' + ONES[o] : TENS[t]);
+      }
+    }
+  }
+  return parts.join(' ');
+}
+
+function renderRoundNumberGrid(step, count) {
+  var html = '<div class="ab-letter-grid">';
+  for (var i = 1; i <= count; i++) {
+    var n = i * step;
+    var w = numberToGreekWords(n);
+    html += '<div class="ab-letter-card" onclick="speakLetter(\''+w.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-letter-upper">'+formatNumberGr(n)+'</div>';
+    html += '<div class="ab-letter-lower">'+w+'</div>';
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderNumbersTab() {
+  var html = '';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🔢 Οι Αριθμοί (1-20)</div>';
+  html += '<div class="ab-letter-grid">';
+  NUMBERS.forEach(function(x) {
+    html += '<div class="ab-letter-card" onclick="speakLetter(\''+x.w.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-letter-upper">'+x.n+'</div>';
+    html += '<div class="ab-letter-lower">'+x.w+'</div>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📖 Πώς μετράμε πιο ψηλά;</div>';
+  NUMBER_RULES.forEach(function(g) {
+    html += '<div class="ab-grammar-card" onclick="speakLetter(\''+g.say.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-grammar-title">🔊 '+g.title+'</div>';
+    html += '<div class="ab-grammar-text">'+g.text+'</div>';
+    if (g.examples && g.examples.length > 0) {
+      html += '<div style="margin-top:8px;">';
+      g.examples.forEach(function(ex) {
+        html += '<span class="ab-grammar-example">'+ex+'</span> ';
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🔟 Οι Δεκάδες (10-100)</div>';
+  html += renderRoundNumberGrid(10, 10);
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">💯 Οι Εκατοντάδες (100-1.000)</div>';
+  html += renderRoundNumberGrid(100, 10);
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🧮 Οι Χιλιάδες (1.000-10.000)</div>';
+  html += renderRoundNumberGrid(1000, 10);
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🛠️ Χτίσε τον δικό σου αριθμό!</div>';
+  html += '<p style="font-size:13px;color:var(--text3);margin-bottom:12px;">Πάτησε ▲ ▼ για να φτιάξεις έναν αριθμό μέχρι το 9999, μετά πάτησε πάνω του για να τον ακούσεις.</p>';
+  html += '<div class="number-builder-card" id="number-builder"></div>';
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🎯 Μέτρα τα πράγματα!</div>';
+  html += '<p style="font-size:13px;color:var(--text3);margin-bottom:12px;">Μέτρησε πόσα βλέπεις και πάτησε τον σωστό αριθμό.</p>';
+  html += '<div class="count-game-card">';
+  html += '<div class="count-score-row"><span id="count-score-line">Σωστές: '+countScore.correct+' / '+countScore.total+'</span><button class="count-reset-btn" onclick="resetCountScore()">↺ Μηδενισμός</button></div>';
+  html += '<div id="count-round"></div>';
+  html += '</div></div>';
+
+  html += '<div style="height:60px;"></div>';
+  document.getElementById('tab-numbers').innerHTML = html;
+  renderNumberBuilder();
+  newCountRound();
+}
+
+function builderDigitColumn(label, key, val) {
+  return '<div class="builder-col">' +
+    '<button class="builder-btn" onclick="changeBuilderDigit(\''+key+'\',1)">▲</button>' +
+    '<div class="builder-digit-value">'+val+'</div>' +
+    '<button class="builder-btn" onclick="changeBuilderDigit(\''+key+'\',-1)">▼</button>' +
+    '<div class="builder-col-label">'+label+'</div>' +
+    '</div>';
+}
+
+function renderNumberBuilder() {
+  var n = builderDigits.th*1000 + builderDigits.h*100 + builderDigits.t*10 + builderDigits.u;
+  var words = numberToGreekWords(n);
+  var html = '<div class="builder-digits">';
+  html += builderDigitColumn('Χιλιάδες','th',builderDigits.th);
+  html += builderDigitColumn('Εκατοντάδες','h',builderDigits.h);
+  html += builderDigitColumn('Δεκάδες','t',builderDigits.t);
+  html += builderDigitColumn('Μονάδες','u',builderDigits.u);
+  html += '</div>';
+  html += '<div class="builder-number" onclick="speakLetter(\''+words.replace(/'/g,"\\'")+'\')">'+formatNumberGr(n)+' <span class="builder-speak">🔊</span></div>';
+  html += '<div class="builder-words">'+words+'</div>';
+  var el = document.getElementById('number-builder');
+  if (el) el.innerHTML = html;
+}
+
+function changeBuilderDigit(key, delta) {
+  builderDigits[key] = Math.max(0, Math.min(9, builderDigits[key] + delta));
+  renderNumberBuilder();
+}
+
+function newCountRound() {
+  var obj = COUNT_OBJECTS[Math.floor(Math.random()*COUNT_OBJECTS.length)];
+  var target = 1 + Math.floor(Math.random()*12);
+  countCurrentTarget = target;
+
+  var choices = [target];
+  while (choices.length < 4) {
+    var d = Math.max(1, Math.min(20, target + (Math.floor(Math.random()*7) - 3)));
+    if (choices.indexOf(d) === -1) choices.push(d);
+  }
+  for (var i = choices.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random()*(i+1));
+    var tmp = choices[i]; choices[i] = choices[j]; choices[j] = tmp;
+  }
+
+  var objectsHtml = '';
+  for (var k = 0; k < target; k++) { objectsHtml += '<span class="count-emoji">'+obj.emoji+'</span>'; }
+
+  var html = '<div class="count-question">Πόσα <strong>'+obj.name+'</strong> βλέπεις;</div>';
+  html += '<div class="count-objects">'+objectsHtml+'</div>';
+  html += '<div class="count-choices">';
+  choices.forEach(function(c) {
+    html += '<button class="count-choice-btn" onclick="checkCountAnswer('+c+',this)">'+c+'</button>';
+  });
+  html += '</div>';
+  html += '<div class="count-feedback" id="count-feedback"></div>';
+  document.getElementById('count-round').innerHTML = html;
+}
+
+function checkCountAnswer(choice, btn) {
+  var buttons = document.querySelectorAll('.count-choice-btn');
+  buttons.forEach(function(b) { b.disabled = true; b.style.pointerEvents = 'none'; });
+  var fb = document.getElementById('count-feedback');
+  countScore.total++;
+
+  if (choice === countCurrentTarget) {
+    countScore.correct++;
+    btn.classList.add('correct');
+    fb.textContent = '🎉 Μπράβο! Είναι '+countCurrentTarget+'!';
+    fb.className = 'count-feedback correct';
+    speakLetter(wordForNumber(countCurrentTarget));
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (parseInt(b.textContent,10) === countCurrentTarget) b.classList.add('correct'); });
+    fb.textContent = 'Δοκίμασε ξανά! Η σωστή απάντηση είναι '+countCurrentTarget+'.';
+    fb.className = 'count-feedback wrong';
+  }
+  updateCountScoreLine();
+  setTimeout(newCountRound, 1600);
+}
+
+function wordForNumber(n) {
+  for (var i = 0; i < NUMBERS.length; i++) { if (NUMBERS[i].n === n) return NUMBERS[i].w; }
+  return String(n);
+}
+
+function updateCountScoreLine() {
+  var el = document.getElementById('count-score-line');
+  if (el) el.textContent = 'Σωστές: '+countScore.correct+' / '+countScore.total;
+}
+
+function resetCountScore() {
+  countScore = {correct:0, total:0};
+  updateCountScoreLine();
+}
+
+// ── TIME TAB ──
+const DAY_PERIODS = [
+  {key:'morning', label:'Πρωί', icon:'☀️', range:'7 το πρωί - 1 το μεσημέρι',
+   hint:'Ξυπνάμε, πλενόμαστε και πάμε σχολείο!',
+   say:'Πρωί είναι από τις εφτά το πρωί μέχρι την 1 το μεσημέρι. Ξυπνάμε, πλενόμαστε και πάμε σχολείο.'},
+  {key:'noon', label:'Μεσημέρι', icon:'🌤️', range:'1 - 5 το απόγευμα',
+   hint:'Τρώμε το μεσημεριανό μας!',
+   say:'Μεσημέρι είναι από την 1 μέχρι τις 5 το απόγευμα. Τρώμε το μεσημεριανό μας.'},
+  {key:'afternoon', label:'Απόγευμα', icon:'🌇', range:'5 - 9 το βράδυ',
+   hint:'Παίζουμε και κάνουμε τα μαθήματά μας!',
+   say:'Απόγευμα είναι από τις 5 μέχρι τις 9 το βράδυ. Παίζουμε και κάνουμε τα μαθήματά μας.'},
+  {key:'evening', label:'Βράδυ', icon:'🌙', range:'9 το βράδυ - 7 το πρωί',
+   hint:'Τρώμε βραδινό, κάνουμε μπάνιο και κοιμόμαστε!',
+   say:'Βράδυ είναι από τις 9 μέχρι τις 7 το πρωί. Τρώμε βραδινό, κάνουμε μπάνιο και κοιμόμαστε.'}
+];
+
+const HOUR_SYSTEM_RULES = [
+  {title:'Το ρολόι με τα νούμερα (24ωρο)',
+   text:'Το κινητό συχνά δείχνει την ώρα με νούμερα από το <span class="ab-grammar-highlight">00</span> μέχρι το <span class="ab-grammar-highlight">23</span>. Μετά τις 12 το μεσημέρι, δεν ξαναρχίζει από το 1 — συνεχίζει: 13, 14, 15... μέχρι το 23. Μετά το 23 ξαναρχίζει από το 00.',
+   say:'Το κινητό συχνά δείχνει την ώρα με νούμερα από το μηδέν μέχρι το εικοσιτρία. Μετά τις δώδεκα το μεσημέρι, δεν ξαναρχίζει από το ένα, συνεχίζει: δεκατρία, δεκατέσσερα, δεκαπέντε, μέχρι το εικοσιτρία. Μετά το εικοσιτρία ξαναρχίζει από το μηδέν.'},
+  {title:'Το ρολόι με π.μ. και μ.μ. (12ωρο)',
+   text:'Όταν μιλάμε, λέμε τις ώρες μόνο από το 1 μέχρι το 12, και προσθέτουμε <span class="ab-grammar-highlight">π.μ.</span> (πριν το μεσημέρι) ή <span class="ab-grammar-highlight">μ.μ.</span> (μετά το μεσημέρι), για να ξέρουμε αν είναι πρωί ή απόγευμα/βράδυ.',
+   say:'Όταν μιλάμε, λέμε τις ώρες μόνο από το ένα μέχρι το δώδεκα, και προσθέτουμε π μ, δηλαδή πριν το μεσημέρι, ή μ μ, δηλαδή μετά το μεσημέρι, για να ξέρουμε αν είναι πρωί ή απόγευμα και βράδυ.'},
+  {title:'Πώς μετατρέπουμε το 24ωρο σε 12ωρο',
+   text:'Αν η ώρα στο κινητό είναι πάνω από το 12 (π.χ. 13, 14... 23), αφαιρούμε 12 και βάζουμε «μ.μ.». Δηλαδή το <span class="ab-grammar-highlight">13:00</span> είναι <span class="ab-grammar-highlight">1 μ.μ.</span>, και το <span class="ab-grammar-highlight">21:00</span> είναι <span class="ab-grammar-highlight">9 μ.μ.</span>',
+   say:'Αν η ώρα στο κινητό είναι πάνω από το δώδεκα, αφαιρούμε δώδεκα και βάζουμε μ μ. Δηλαδή το δεκατρία μηδέν μηδέν είναι μία μ μ, και το εικοσιένα μηδέν μηδέν είναι εννιά μ μ.'}
+];
+
+const CLOCK_RULES = [
+  {title:'Ο μικρός δείκτης',
+   text:'Ο πιο κοντός δείκτης δείχνει την <span class="ab-grammar-highlight">ώρα</span>. Κοίτα σε ποιον αριθμό δείχνει.',
+   say:'Ο πιο κοντός δείκτης δείχνει την ώρα. Κοίτα σε ποιον αριθμό δείχνει.'},
+  {title:'Ο μεγάλος δείκτης',
+   text:'Ο πιο μακρύς δείκτης δείχνει τα <span class="ab-grammar-highlight">λεπτά</span>. Όταν δείχνει το 12, η ώρα είναι ακριβής.',
+   say:'Ο πιο μακρύς δείκτης δείχνει τα λεπτά. Όταν δείχνει το δώδεκα, η ώρα είναι ακριβής.'},
+  {title:'Πώς διαβάζουμε την ώρα',
+   text:'Πρώτα κοιτάμε τον μικρό δείκτη για την ώρα, και μετά τον μεγάλο δείκτη για τα λεπτά.',
+   say:'Πρώτα κοιτάμε τον μικρό δείκτη για την ώρα, και μετά τον μεγάλο δείκτη για τα λεπτά.'}
+];
+
+var liveClockTimer = null;
+var clockScore = {correct:0, total:0};
+var clockCurrentHour = 1;
+var periodScore = {correct:0, total:0};
+
+function pad2(n) { return n < 10 ? '0'+n : ''+n; }
+
+function getDayPeriod(hour) {
+  if (hour >= 7 && hour < 13) return DAY_PERIODS[0];
+  if (hour >= 13 && hour < 17) return DAY_PERIODS[1];
+  if (hour >= 17 && hour < 21) return DAY_PERIODS[2];
+  return DAY_PERIODS[3];
+}
+
+function hour24to12(h) {
+  if (h === 0) return {n:12, suffix:'12 τα μεσάνυχτα'};
+  if (h === 12) return {n:12, suffix:'12 το μεσημέρι'};
+  if (h < 12) return {n:h, suffix:h+' π.μ.'};
+  return {n:h-12, suffix:(h-12)+' μ.μ.'};
+}
+
+function renderHourMappingGrid(startHour, endHour) {
+  var html = '<div class="ab-letter-grid">';
+  for (var h = startHour; h <= endHour; h++) {
+    var m = hour24to12(h);
+    var sayText;
+    if (h === 0) sayText = 'Δώδεκα τα μεσάνυχτα.';
+    else if (h === 12) sayText = 'Δώδεκα το μεσημέρι.';
+    else {
+      var hourWord = wordForNumber(m.n);
+      var suffixWord = h < 12 ? 'πριν το μεσημέρι' : 'μετά το μεσημέρι';
+      sayText = hourWord + ' η ώρα, ' + suffixWord + '.';
+    }
+    html += '<div class="ab-letter-card" onclick="speakLetter(\''+sayText.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-letter-upper">'+pad2(h)+':00</div>';
+    html += '<div class="ab-letter-lower">'+m.suffix+'</div>';
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function clockFaceSVG(hour, minute) {
+  var minuteAngle = minute*6;
+  var hourAngle = (hour%12)*30 + minute*0.5;
+  var nums = '';
+  for (var i = 1; i <= 12; i++) {
+    var angle = (i*30 - 90) * Math.PI/180;
+    var cx = 100 + Math.cos(angle)*78;
+    var cy = 100 + Math.sin(angle)*78;
+    nums += '<text x="'+cx.toFixed(1)+'" y="'+(cy+6).toFixed(1)+'" class="clock-num" text-anchor="middle">'+i+'</text>';
+  }
+  return '<svg viewBox="0 0 200 200" class="clock-face">' +
+    '<circle cx="100" cy="100" r="96" class="clock-circle"/>' +
+    nums +
+    '<line x1="100" y1="100" x2="100" y2="55" class="clock-hour-hand" transform="rotate('+hourAngle+' 100 100)"/>' +
+    '<line x1="100" y1="100" x2="100" y2="32" class="clock-minute-hand" transform="rotate('+minuteAngle+' 100 100)"/>' +
+    '<circle cx="100" cy="100" r="6" class="clock-center"/>' +
+    '</svg>';
+}
+
+function renderTimeTab() {
+  var html = '';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🕐 Τι ώρα είναι τώρα;</div>';
+  html += '<div class="time-live-card" id="time-live-card"></div>';
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">☀️ Πρωί, Μεσημέρι, Απόγευμα, Βράδυ</div>';
+  html += '<div class="period-grid">';
+  DAY_PERIODS.forEach(function(p) {
+    html += '<div class="period-card period-'+p.key+'" onclick="speakLetter(\''+p.say.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="period-card-icon">'+p.icon+'</div>';
+    html += '<div class="period-card-label">'+p.label+'</div>';
+    html += '<div class="period-card-range">'+p.range+'</div>';
+    html += '<div class="period-card-hint">'+p.hint+'</div>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🕐 Δύο τρόποι να λέμε την ώρα</div>';
+  HOUR_SYSTEM_RULES.forEach(function(g) {
+    html += '<div class="ab-grammar-card" onclick="speakLetter(\''+g.say.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-grammar-title">🔊 '+g.title+'</div>';
+    html += '<div class="ab-grammar-text">'+g.text+'</div>';
+    html += '</div>';
+  });
+  html += '<p style="font-size:13px;color:var(--text3);margin:10px 0 6px;">Το πρωί, τα νούμερα είναι ίδια — πάτησε για να ακούσεις:</p>';
+  html += renderHourMappingGrid(0, 11);
+  html += '<p style="font-size:13px;color:var(--text3);margin:14px 0 6px;">Μετά το μεσημέρι, το ρολόι με νούμερα δείχνει 12-23 — πάτησε για να ακούσεις:</p>';
+  html += renderHourMappingGrid(12, 23);
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📖 Πώς διαβάζουμε το ρολόι</div>';
+  CLOCK_RULES.forEach(function(g) {
+    html += '<div class="ab-grammar-card" onclick="speakLetter(\''+g.say.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-grammar-title">🔊 '+g.title+'</div>';
+    html += '<div class="ab-grammar-text">'+g.text+'</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🎯 Τι ώρα δείχνει το ρολόι;</div>';
+  html += '<p style="font-size:13px;color:var(--text3);margin-bottom:12px;">Κοίτα το ρολόι και πάτησε τη σωστή ώρα.</p>';
+  html += '<div class="count-game-card">';
+  html += '<div class="count-score-row"><span id="clock-score-line">Σωστές: '+clockScore.correct+' / '+clockScore.total+'</span><button class="count-reset-btn" onclick="resetClockScore()">↺ Μηδενισμός</button></div>';
+  html += '<div id="clock-round"></div>';
+  html += '</div></div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🎯 Ποια στιγμή της ημέρας είναι;</div>';
+  html += '<p style="font-size:13px;color:var(--text3);margin-bottom:12px;">Δες την ώρα και πάτησε πρωί, μεσημέρι, απόγευμα ή βράδυ.</p>';
+  html += '<div class="count-game-card">';
+  html += '<div class="count-score-row"><span id="period-score-line">Σωστές: '+periodScore.correct+' / '+periodScore.total+'</span><button class="count-reset-btn" onclick="resetPeriodScore()">↺ Μηδενισμός</button></div>';
+  html += '<div id="period-round"></div>';
+  html += '</div></div>';
+
+  html += '<div style="height:60px;"></div>';
+  document.getElementById('tab-time').innerHTML = html;
+
+  renderLiveClock();
+  startLiveClock();
+  newClockRound();
+  newPeriodRound();
+}
+
+function renderLiveClock() {
+  var el = document.getElementById('time-live-card');
+  if (!el) { stopLiveClock(); return; }
+  var now = new Date();
+  var h24 = now.getHours(), m = now.getMinutes();
+  var h12 = h24 % 12; if (h12 === 0) h12 = 12;
+  var period = getDayPeriod(h24);
+  var html = '<div class="time-clock-wrap">'+clockFaceSVG(h12, m)+'</div>';
+  html += '<div class="time-digital">'+pad2(h24)+':'+pad2(m)+'</div>';
+  var bannerSay = 'Τώρα είναι '+period.label.toLowerCase()+'. '+period.hint;
+  html += '<div class="time-period-banner tpb-'+period.key+'" onclick="speakLetter(\''+bannerSay.replace(/'/g,"\\'")+'\')"><span class="tpb-icon">'+period.icon+'</span><span>Τώρα είναι '+period.label.toLowerCase()+'! '+period.hint+'</span></div>';
+  el.innerHTML = html;
+}
+
+function startLiveClock() {
+  stopLiveClock();
+  liveClockTimer = setInterval(renderLiveClock, 10000);
+}
+
+function stopLiveClock() {
+  if (liveClockTimer) { clearInterval(liveClockTimer); liveClockTimer = null; }
+}
+
+function newClockRound() {
+  var hour = 1 + Math.floor(Math.random()*12);
+  clockCurrentHour = hour;
+  var choices = [hour];
+  while (choices.length < 4) {
+    var d = 1 + ((hour - 1 + Math.floor(Math.random()*11) + 1) % 12);
+    if (choices.indexOf(d) === -1) choices.push(d);
+  }
+  for (var i = choices.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random()*(i+1));
+    var tmp = choices[i]; choices[i] = choices[j]; choices[j] = tmp;
+  }
+  var html = '<div class="time-clock-wrap">'+clockFaceSVG(hour, 0)+'</div>';
+  html += '<div class="count-choices">';
+  choices.forEach(function(c) {
+    html += '<button class="time-choice-btn" onclick="checkClockAnswer('+c+',this)">'+c+':00</button>';
+  });
+  html += '</div>';
+  html += '<div class="count-feedback" id="clock-feedback"></div>';
+  var el = document.getElementById('clock-round');
+  if (el) el.innerHTML = html;
+}
+
+function checkClockAnswer(choice, btn) {
+  var buttons = document.querySelectorAll('#clock-round .time-choice-btn');
+  buttons.forEach(function(b) { b.disabled = true; b.style.pointerEvents = 'none'; });
+  var fb = document.getElementById('clock-feedback');
+  clockScore.total++;
+  if (choice === clockCurrentHour) {
+    clockScore.correct++;
+    btn.classList.add('correct');
+    fb.textContent = '🎉 Μπράβο! '+hourPhrase(clockCurrentHour)+'!';
+    fb.className = 'count-feedback correct';
+    speakLetter(hourPhrase(clockCurrentHour));
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (parseInt(b.textContent,10) === clockCurrentHour) b.classList.add('correct'); });
+    fb.textContent = 'Δοκίμασε ξανά! '+hourPhrase(clockCurrentHour)+'.';
+    fb.className = 'count-feedback wrong';
+  }
+  var line = document.getElementById('clock-score-line');
+  if (line) line.textContent = 'Σωστές: '+clockScore.correct+' / '+clockScore.total;
+  setTimeout(newClockRound, 1800);
+}
+
+function hourPhrase(h) {
+  var FEM = {1:'μία',3:'τρεις',4:'τέσσερις'};
+  var w = FEM[h] || wordForNumber(h);
+  return 'Είναι '+w+' η ώρα';
+}
+
+function resetClockScore() {
+  clockScore = {correct:0, total:0};
+  var line = document.getElementById('clock-score-line');
+  if (line) line.textContent = 'Σωστές: 0 / 0';
+}
+
+function newPeriodRound() {
+  var hour = Math.floor(Math.random()*24);
+  var minute = Math.random() < 0.5 ? 0 : 30;
+  var correctPeriod = getDayPeriod(hour);
+  var choices = DAY_PERIODS.slice();
+  for (var i = choices.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random()*(i+1));
+    var tmp = choices[i]; choices[i] = choices[j]; choices[j] = tmp;
+  }
+  var html = '<div class="time-digital" style="margin-bottom:16px;">'+pad2(hour)+':'+pad2(minute)+'</div>';
+  html += '<div class="count-choices">';
+  choices.forEach(function(p) {
+    html += '<button class="time-choice-btn period-pick-btn" data-period="'+p.key+'" onclick="checkPeriodAnswer(\''+p.key+'\',this)">'+p.icon+' '+p.label+'</button>';
+  });
+  html += '</div>';
+  html += '<div class="count-feedback" id="period-feedback"></div>';
+  var el = document.getElementById('period-round');
+  if (el) { el.innerHTML = html; el.setAttribute('data-correct', correctPeriod.key); }
+}
+
+function checkPeriodAnswer(choiceKey, btn) {
+  var el = document.getElementById('period-round');
+  var correctKey = el.getAttribute('data-correct');
+  var buttons = document.querySelectorAll('#period-round .time-choice-btn');
+  buttons.forEach(function(b) { b.disabled = true; b.style.pointerEvents = 'none'; });
+  var fb = document.getElementById('period-feedback');
+  periodScore.total++;
+  var correctPeriod = DAY_PERIODS.filter(function(p) { return p.key === correctKey; })[0];
+  if (choiceKey === correctKey) {
+    periodScore.correct++;
+    btn.classList.add('correct');
+    fb.textContent = '🎉 Μπράβο! Είναι '+correctPeriod.label.toLowerCase()+'!';
+    fb.className = 'count-feedback correct';
+    speakLetter('Είναι '+correctPeriod.label.toLowerCase());
+  } else {
+    btn.classList.add('wrong');
+    buttons.forEach(function(b) { if (b.getAttribute('data-period') === correctKey) b.classList.add('correct'); });
+    fb.textContent = 'Δοκίμασε ξανά! Είναι '+correctPeriod.label.toLowerCase()+'.';
+    fb.className = 'count-feedback wrong';
+  }
+  var line = document.getElementById('period-score-line');
+  if (line) line.textContent = 'Σωστές: '+periodScore.correct+' / '+periodScore.total;
+  setTimeout(newPeriodRound, 1800);
+}
+
+function resetPeriodScore() {
+  periodScore = {correct:0, total:0};
+  var line = document.getElementById('period-score-line');
+  if (line) line.textContent = 'Σωστές: 0 / 0';
 }
 
 // ── STORIES ──
