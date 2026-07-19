@@ -95,17 +95,25 @@
     background: var(--bg2);
     border-bottom: 1px solid var(--border);
     flex-shrink: 0; z-index: 9;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .tabs::-webkit-scrollbar { display: none; }
   .tab {
-    -webkit-flex: 1; flex: 1;
-    padding: 11px 4px; text-align: center;
+    -webkit-flex: 0 0 auto; flex: 0 0 auto;
+    padding: 11px 12px; text-align: center;
     font-size: 12px; font-weight: 500;
     color: var(--text3); cursor: pointer;
     border-bottom: 2.5px solid transparent;
     -webkit-transition: all 0.15s; transition: all 0.15s;
     -webkit-user-select: none; user-select: none;
+    white-space: nowrap;
   }
   .tab.active { color: var(--purple); border-bottom-color: var(--purple); background: #faf9ff; }
+
+  @media (min-width: 680px) {
+    .tab { -webkit-flex: 1; flex: 1; padding: 11px 4px; white-space: normal; }
+  }
 
   /* MAIN */
   main {
