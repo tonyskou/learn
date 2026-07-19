@@ -101,18 +101,25 @@
   .tabs::-webkit-scrollbar { display: none; }
   .tab {
     -webkit-flex: 0 0 auto; flex: 0 0 auto;
-    padding: 11px 12px; text-align: center;
-    font-size: 12px; font-weight: 500;
+    display: -webkit-flex; display: flex;
+    -webkit-flex-direction: column; flex-direction: column;
+    -webkit-align-items: center; align-items: center;
+    -webkit-justify-content: center; justify-content: center;
+    gap: 2px; padding: 8px 10px; text-align: center;
     color: var(--text3); cursor: pointer;
     border-bottom: 2.5px solid transparent;
     -webkit-transition: all 0.15s; transition: all 0.15s;
     -webkit-user-select: none; user-select: none;
     white-space: nowrap;
   }
+  .tab-icon { font-size: 18px; line-height: 1; }
+  .tab-label { font-size: 10px; font-weight: 600; line-height: 1.1; }
   .tab.active { color: var(--purple); border-bottom-color: var(--purple); background: #faf9ff; }
 
   @media (min-width: 680px) {
-    .tab { -webkit-flex: 1; flex: 1; padding: 11px 4px; white-space: normal; }
+    .tab { -webkit-flex: 1; flex: 1; padding: 10px 4px; }
+    .tab-icon { font-size: 20px; }
+    .tab-label { font-size: 12px; }
   }
 
   /* MAIN */
@@ -124,7 +131,7 @@
     touch-action: pan-y;
   }
   /* Ensure tab content panels also allow scrolling if they get their own scroll context */
-  #tab-learn, #tab-review, #tab-stats, #tab-ab {
+  #tab-learn, #tab-progress, #tab-ab {
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
   }
@@ -1065,8 +1072,7 @@ function showChildPicker(children) {
   html += '</div>';
 
   document.getElementById('tab-learn').innerHTML = html;
-  document.getElementById('tab-review').style.display = 'none';
-  document.getElementById('tab-stats').style.display = 'none';
+  document.getElementById('tab-progress').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
@@ -1078,8 +1084,7 @@ function selectChild(name) {
   childKey = name;
   localStorage.setItem('childKey', childKey);
   updateAppSub();
-  document.getElementById('tab-review').style.display = 'none';
-  document.getElementById('tab-stats').style.display = 'none';
+  document.getElementById('tab-progress').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
@@ -1097,8 +1102,7 @@ function showChildSetup() {
     '<button onclick="saveChildNameFromSetup()" style="background:var(--purple);color:white;border:none;border-radius:14px;padding:15px 36px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;max-width:280px;-webkit-appearance:none;appearance:none;">Συνέχεια ▶</button>';
   html += '</div>';
   document.getElementById('tab-learn').innerHTML = html;
-  document.getElementById('tab-review').style.display = 'none';
-  document.getElementById('tab-stats').style.display = 'none';
+  document.getElementById('tab-progress').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
@@ -1113,8 +1117,7 @@ function saveChildNameFromSetup() {
   childKey = name;
   localStorage.setItem('childKey', childKey);
   updateAppSub();
-  document.getElementById('tab-review').style.display = 'none';
-  document.getElementById('tab-stats').style.display = 'none';
+  document.getElementById('tab-progress').style.display = 'none';
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
@@ -1209,19 +1212,17 @@ function showAppShell() {
       '<div class="header-stats" id="header-stats"></div>' +
     '</header>' +
     '<div class="tabs">' +
-      '<div class="tab active" id="tab-btn-learn" onclick="switchTab(\'learn\',this)">📚 Μάθηση</div>' +
-      '<div class="tab" id="tab-btn-review" onclick="switchTab(\'review\',this)">🔄 Επανάληψη</div>' +
-      '<div class="tab" id="tab-btn-stats" onclick="switchTab(\'stats\',this)">⭐ Πρόοδος</div>' +
-      '<div class="tab" id="tab-btn-ab" onclick="switchTab(\'ab\',this)">🔤 ΑΒ</div>' +
-      '<div class="tab" id="tab-btn-numbers" onclick="switchTab(\'numbers\',this)">🔢 Αριθμοί</div>' +
-      '<div class="tab" id="tab-btn-time" onclick="switchTab(\'time\',this)">🕐 Ώρα</div>' +
-      '<div class="tab" id="tab-btn-calendar" onclick="switchTab(\'calendar\',this)">📅 Ημερολόγιο</div>' +
-      '<div class="tab" id="tab-btn-stories" onclick="switchTab(\'stories\',this)">📖 Ιστορίες</div>' +
+      '<div class="tab active" id="tab-btn-learn" onclick="switchTab(\'learn\',this)"><div class="tab-icon">📚</div><div class="tab-label">Μάθηση</div></div>' +
+      '<div class="tab" id="tab-btn-progress" onclick="switchTab(\'progress\',this)"><div class="tab-icon">⭐</div><div class="tab-label">Πρόοδος</div></div>' +
+      '<div class="tab" id="tab-btn-ab" onclick="switchTab(\'ab\',this)"><div class="tab-icon">🔤</div><div class="tab-label">ΑΒ</div></div>' +
+      '<div class="tab" id="tab-btn-numbers" onclick="switchTab(\'numbers\',this)"><div class="tab-icon">🔢</div><div class="tab-label">Αριθμοί</div></div>' +
+      '<div class="tab" id="tab-btn-time" onclick="switchTab(\'time\',this)"><div class="tab-icon">🕐</div><div class="tab-label">Ώρα</div></div>' +
+      '<div class="tab" id="tab-btn-calendar" onclick="switchTab(\'calendar\',this)"><div class="tab-icon">📅</div><div class="tab-label">Ημερολόγιο</div></div>' +
+      '<div class="tab" id="tab-btn-stories" onclick="switchTab(\'stories\',this)"><div class="tab-icon">📖</div><div class="tab-label">Ιστορίες</div></div>' +
     '</div>' +
     '<main>' +
       '<div id="tab-learn"></div>' +
-      '<div id="tab-review" style="display:none;"></div>' +
-      '<div id="tab-stats" style="display:none;"></div>' +
+      '<div id="tab-progress" style="display:none;"></div>' +
       '<div id="tab-ab" style="display:none;"></div>' +
       '<div id="tab-numbers" style="display:none;"></div>' +
       '<div id="tab-time" style="display:none;"></div>' +
@@ -1246,8 +1247,7 @@ function switchTab(name, el){
   document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
   el.classList.add('active');
   document.getElementById('tab-learn').style.display  = name==='learn'  ? '' : 'none';
-  document.getElementById('tab-review').style.display = name==='review' ? '' : 'none';
-  document.getElementById('tab-stats').style.display  = name==='stats'  ? '' : 'none';
+  document.getElementById('tab-progress').style.display = name==='progress' ? '' : 'none';
   document.getElementById('tab-ab').style.display     = name==='ab'     ? '' : 'none';
   document.getElementById('tab-numbers').style.display = name==='numbers' ? '' : 'none';
   document.getElementById('tab-time').style.display = name==='time' ? '' : 'none';
@@ -1255,8 +1255,7 @@ function switchTab(name, el){
   document.getElementById('tab-stories').style.display = name==='stories' ? '' : 'none';
   currentTab = name;
   if(name!=='time') stopLiveClock();
-  if(name==='review') renderReview();
-  if(name==='stats')  renderStats();
+  if(name==='progress') renderProgressTab();
   if(name==='ab')     renderAbTab();
   if(name==='numbers') renderNumbersTab();
   if(name==='time')    renderTimeTab();
@@ -1403,8 +1402,17 @@ function prevSet()  { if(currentSet>0){ currentSet--; currentDay=0; celebPending
 function nextSet()  { if(currentSet<WORD_SETS.length-1){ currentSet++; currentDay=0; celebPending=false; save(); renderLearn(); } }
 function nextSetAuto(){ celebPending=false; if(currentSet<WORD_SETS.length-1){ currentSet++; currentDay=0; save(); } renderLearn(); }
 
-// ── REVIEW ──
-function renderReview(){
+// ── PROGRESS (stats + review, merged into one tab) ──
+function renderProgressTab(){
+  var html = buildStatsHTML();
+  html += '<div class="ab-section" style="margin-top:22px;">';
+  html += '<div class="ab-section-title">🔄 Επανάληψη</div>';
+  html += buildReviewHTML();
+  html += '</div>';
+  document.getElementById('tab-progress').innerHTML = html;
+}
+
+function buildReviewHTML(){
   var any = false;
   var html = '';
   WORD_SETS.forEach(function(set,i){ if(completedSets[sKey(i)]) any=true; });
@@ -1422,7 +1430,7 @@ function renderReview(){
     });
     html += '</div>';
   }
-  document.getElementById('tab-review').innerHTML = html;
+  return html;
 }
 function goReview(i){
   currentSet=i; currentDay=0; celebPending=false; save();
@@ -1430,8 +1438,7 @@ function goReview(i){
   renderLearn();
 }
 
-// ── STATS ──
-function renderStats(){
+function buildStatsHTML(){
   var tl  = totalLearned();
   var ts  = totalCompleted();
   var pct = Math.round(tl / (WORD_SETS.length*10) * 100);
@@ -1452,7 +1459,7 @@ function renderStats(){
       '</div>';
   }
 
-  document.getElementById('tab-stats').innerHTML = headerHTML +
+  return headerHTML +
     '<div class="streak-card"><div class="streak-num">⭐ '+ts+'</div><div class="streak-label">Σετ που ολοκλήρωσες</div></div>' +
     '<div class="stats-grid">' +
       '<div class="stat-card"><div class="stat-num">'+tl+'</div><div class="stat-label">Λέξεις που έμαθες</div></div>' +
