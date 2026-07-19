@@ -555,6 +555,62 @@
   .time-choice-btn.wrong { background: #FFF0F0; border-color: #FFD0D0; color: var(--red); }
   .period-pick-btn { font-size: 14px; height: auto; min-height: 56px; padding: 10px 14px; white-space: normal; }
 
+  /* CALENDAR TAB */
+  .calendar-today-card {
+    border: 2px solid var(--border); border-radius: 16px; padding: 20px;
+    text-align: center; cursor: pointer; -webkit-user-select: none; user-select: none;
+  }
+  .calendar-today-day { font-size: 26px; font-weight: 800; }
+  .calendar-today-date { font-size: 15px; margin-top: 4px; opacity: 0.85; }
+  .calendar-today-tag {
+    display: inline-block; margin-top: 10px; padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.55);
+  }
+
+  .week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  @media (max-width: 420px) { .week-strip { grid-template-columns: repeat(4, 1fr); } }
+  .week-day-card {
+    border-radius: 12px; padding: 10px 4px; text-align: center; cursor: pointer;
+    border: 1.5px solid var(--border); position: relative;
+    -webkit-user-select: none; user-select: none;
+  }
+  .week-day-short { font-size: 11px; font-weight: 700; opacity: 0.75; }
+  .week-day-num { font-size: 19px; font-weight: 800; margin-top: 2px; }
+  .week-day-full { font-size: 12px; font-weight: 700; margin-top: 2px; }
+  .week-today-badge {
+    position: absolute; top: -8px; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);
+    background: var(--coral); color: white; font-size: 9px; font-weight: 800;
+    padding: 2px 6px; border-radius: 8px; white-space: nowrap;
+  }
+
+  .month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .month-head { text-align: center; font-size: 11px; font-weight: 800; padding: 4px 0; }
+  .month-cell {
+    aspect-ratio: 1; display: -webkit-flex; display: flex;
+    -webkit-align-items: center; align-items: center;
+    -webkit-justify-content: center; justify-content: center;
+    border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;
+    border: 1px solid var(--border); background: var(--bg2);
+    -webkit-user-select: none; user-select: none;
+  }
+  .month-blank { border: none; background: transparent; cursor: default; }
+
+  .month-name-card {
+    background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 14px 6px; text-align: center; cursor: pointer;
+    font-size: 14px; font-weight: 700; color: var(--purple-dark);
+    -webkit-user-select: none; user-select: none;
+  }
+  .month-name-card:active { background: var(--purple-light); }
+
+  .cal-weekday { background: #EEEDFE; border-color: #AFA9EC; color: var(--purple-dark); }
+  .cal-saturday { background: #FFF6D8; border-color: #F5DE8E; color: #8a6d00; }
+  .cal-sunday { background: #FFE1EC; border-color: #F2A9C4; color: #9c3a63; }
+  .cal-head-weekday { color: var(--purple-dark); }
+  .cal-head-saturday { color: #8a6d00; }
+  .cal-head-sunday { color: #9c3a63; }
+  .cal-today { background: var(--purple); border-color: var(--purple-dark); color: white; }
+
   /* STORIES TAB */
   .story-card {
     background: var(--bg2); border: 1.5px solid var(--border);
@@ -1006,6 +1062,7 @@ function showChildPicker(children) {
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
+  document.getElementById('tab-calendar').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
 }
 
@@ -1018,6 +1075,7 @@ function selectChild(name) {
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
+  document.getElementById('tab-calendar').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
   loadFromCloud();
 }
@@ -1036,6 +1094,7 @@ function showChildSetup() {
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
+  document.getElementById('tab-calendar').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
 }
 
@@ -1051,6 +1110,7 @@ function saveChildNameFromSetup() {
   document.getElementById('tab-ab').style.display = 'none';
   document.getElementById('tab-numbers').style.display = 'none';
   document.getElementById('tab-time').style.display = 'none';
+  document.getElementById('tab-calendar').style.display = 'none';
   document.getElementById('tab-stories').style.display = 'none';
   loadFromCloud();
 }
@@ -1147,6 +1207,7 @@ function showAppShell() {
       '<div class="tab" id="tab-btn-ab" onclick="switchTab(\'ab\',this)">🔤 ΑΒ</div>' +
       '<div class="tab" id="tab-btn-numbers" onclick="switchTab(\'numbers\',this)">🔢 Αριθμοί</div>' +
       '<div class="tab" id="tab-btn-time" onclick="switchTab(\'time\',this)">🕐 Ώρα</div>' +
+      '<div class="tab" id="tab-btn-calendar" onclick="switchTab(\'calendar\',this)">📅 Ημερολόγιο</div>' +
       '<div class="tab" id="tab-btn-stories" onclick="switchTab(\'stories\',this)">📖 Ιστορίες</div>' +
     '</div>' +
     '<main>' +
@@ -1156,6 +1217,7 @@ function showAppShell() {
       '<div id="tab-ab" style="display:none;"></div>' +
       '<div id="tab-numbers" style="display:none;"></div>' +
       '<div id="tab-time" style="display:none;"></div>' +
+      '<div id="tab-calendar" style="display:none;"></div>' +
       '<div id="tab-stories" style="display:none;"></div>' +
     '</main>';
 
@@ -1181,6 +1243,7 @@ function switchTab(name, el){
   document.getElementById('tab-ab').style.display     = name==='ab'     ? '' : 'none';
   document.getElementById('tab-numbers').style.display = name==='numbers' ? '' : 'none';
   document.getElementById('tab-time').style.display = name==='time' ? '' : 'none';
+  document.getElementById('tab-calendar').style.display = name==='calendar' ? '' : 'none';
   document.getElementById('tab-stories').style.display = name==='stories' ? '' : 'none';
   currentTab = name;
   if(name!=='time') stopLiveClock();
@@ -1189,6 +1252,7 @@ function switchTab(name, el){
   if(name==='ab')     renderAbTab();
   if(name==='numbers') renderNumbersTab();
   if(name==='time')    renderTimeTab();
+  if(name==='calendar') renderCalendarTab();
   if(name==='stories') renderStories();
 }
 
@@ -2115,6 +2179,159 @@ function resetPeriodScore() {
   periodScore = {correct:0, total:0};
   var line = document.getElementById('period-score-line');
   if (line) line.textContent = 'Σωστές: 0 / 0';
+}
+
+// ── CALENDAR TAB ──
+const GREEK_DAYS = [
+  {key:'monday', short:'Δευ', full:'Δευτέρα', type:'weekday'},
+  {key:'tuesday', short:'Τρί', full:'Τρίτη', type:'weekday'},
+  {key:'wednesday', short:'Τετ', full:'Τετάρτη', type:'weekday'},
+  {key:'thursday', short:'Πέμ', full:'Πέμπτη', type:'weekday'},
+  {key:'friday', short:'Παρ', full:'Παρασκευή', type:'weekday'},
+  {key:'saturday', short:'Σάβ', full:'Σάββατο', type:'saturday'},
+  {key:'sunday', short:'Κυρ', full:'Κυριακή', type:'sunday'}
+];
+
+const GREEK_MONTHS = ['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος',
+  'Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'];
+
+// Genitive form, used whenever the month follows a day number (e.g. "19 Ιουλίου"),
+// as opposed to GREEK_MONTHS which is used standalone (e.g. "Ιούλιος 2026" in the months grid).
+const GREEK_MONTHS_GEN = ['Ιανουαρίου','Φεβρουαρίου','Μαρτίου','Απριλίου','Μαΐου','Ιουνίου',
+  'Ιουλίου','Αυγούστου','Σεπτεμβρίου','Οκτωβρίου','Νοεμβρίου','Δεκεμβρίου'];
+
+const DAY_RULES = [
+  {title:'Δευτέρα - Παρασκευή: οι καθημερινές',
+   text:'Από τη <span class="ab-grammar-highlight">Δευτέρα</span> μέχρι την <span class="ab-grammar-highlight">Παρασκευή</span> είναι οι καθημερινές. Πάμε σχολείο και δουλεύουμε.',
+   say:'Από τη Δευτέρα μέχρι την Παρασκευή είναι οι καθημερινές. Πάμε σχολείο και δουλεύουμε.'},
+  {title:'Σάββατο και Κυριακή: το Σαββατοκύριακο',
+   text:'Το <span class="ab-grammar-highlight">Σάββατο</span> και η <span class="ab-grammar-highlight">Κυριακή</span> είναι το Σαββατοκύριακο. Δεν πάμε σχολείο — ξεκουραζόμαστε και παίζουμε!',
+   say:'Το Σάββατο και η Κυριακή είναι το Σαββατοκύριακο. Δεν πάμε σχολείο, ξεκουραζόμαστε και παίζουμε.'},
+  {title:'Την Κυριακή είναι κλειστά τα μαγαζιά',
+   text:'Την <span class="ab-grammar-highlight">Κυριακή</span> τα περισσότερα μαγαζιά είναι κλειστά. Τα ψώνια τα κάνουμε τις άλλες μέρες της εβδομάδας.',
+   say:'Την Κυριακή τα περισσότερα μαγαζιά είναι κλειστά. Τα ψώνια τα κάνουμε τις άλλες μέρες της εβδομάδας.'}
+];
+
+function jsDayToIndex(jsDay) { return (jsDay + 6) % 7; }
+
+function dayTypeLabel(type) {
+  if (type === 'sunday') return 'Κυριακή — κλειστά τα μαγαζιά';
+  if (type === 'saturday') return 'Σαββατοκύριακο';
+  return 'Καθημερινή';
+}
+
+function todaySpeech(now, info) {
+  var base = 'Σήμερα είναι '+info.full+', '+now.getDate()+' '+GREEK_MONTHS_GEN[now.getMonth()]+'.';
+  if (info.type === 'sunday') return base + ' Είναι Κυριακή, τα μαγαζιά είναι κλειστά.';
+  if (info.type === 'saturday') return base + ' Είναι Σαββατοκύριακο.';
+  return base + ' Είναι καθημερινή.';
+}
+
+function dayClickSpeech(d, dayDate) {
+  var prefix = d.full + ', ' + dayDate.getDate() + ' ' + GREEK_MONTHS_GEN[dayDate.getMonth()] + '. ';
+  if (d.type === 'sunday') return prefix + 'Είναι Κυριακή, τα μαγαζιά είναι κλειστά.';
+  if (d.type === 'saturday') return prefix + 'Είναι Σαββατοκύριακο.';
+  return prefix + 'Είναι καθημερινή.';
+}
+
+function startOfWeek(now) {
+  var idx = jsDayToIndex(now.getDay());
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate() - idx);
+}
+
+function renderMonthGrid(now) {
+  var year = now.getFullYear(), month = now.getMonth(), today = now.getDate();
+  var firstOffset = jsDayToIndex(new Date(year, month, 1).getDay());
+  var daysInMonth = new Date(year, month+1, 0).getDate();
+  var html = '<div class="month-grid">';
+  GREEK_DAYS.forEach(function(d) {
+    html += '<div class="month-head cal-head-'+d.type+'">'+d.short+'</div>';
+  });
+  for (var i = 0; i < firstOffset; i++) html += '<div class="month-cell month-blank"></div>';
+  for (var day = 1; day <= daysInMonth; day++) {
+    var jsIdx = jsDayToIndex(new Date(year, month, day).getDay());
+    var type = GREEK_DAYS[jsIdx].type;
+    var isToday = day === today;
+    var sayText = day+' '+GREEK_MONTHS_GEN[month]+', '+GREEK_DAYS[jsIdx].full;
+    html += '<div class="month-cell cal-'+type+(isToday ? ' cal-today' : '')+'" onclick="speakLetter(\''+sayText.replace(/'/g,"\\'")+'\')">'+day+'</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderCalendarTab() {
+  var html = '';
+  var now = new Date();
+  var todayIdx = jsDayToIndex(now.getDay());
+  var todayInfo = GREEK_DAYS[todayIdx];
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📅 Σήμερα</div>';
+  html += '<div class="calendar-today-card cal-'+todayInfo.type+'" onclick="speakLetter(\''+todaySpeech(now, todayInfo).replace(/'/g,"\\'")+'\')">';
+  html += '<div class="calendar-today-day">'+todayInfo.full+'</div>';
+  html += '<div class="calendar-today-date">'+now.getDate()+' '+GREEK_MONTHS_GEN[now.getMonth()]+' '+now.getFullYear()+'</div>';
+  html += '<div class="calendar-today-tag">'+dayTypeLabel(todayInfo.type)+'</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📖 Καθημερινές και Σαββατοκύριακο</div>';
+  DAY_RULES.forEach(function(g) {
+    html += '<div class="ab-grammar-card" onclick="speakLetter(\''+g.say.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="ab-grammar-title">🔊 '+g.title+'</div>';
+    html += '<div class="ab-grammar-text">'+g.text+'</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">🗓️ Η Εβδομάδα</div>';
+  html += '<div class="week-strip">';
+  var monday = startOfWeek(now);
+  GREEK_DAYS.forEach(function(d, i) {
+    var dayDate = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate()+i);
+    var isToday = dayDate.getDate() === now.getDate() && dayDate.getMonth() === now.getMonth() && dayDate.getFullYear() === now.getFullYear();
+    html += '<div class="week-day-card cal-'+d.type+(isToday ? ' cal-today' : '')+'" onclick="speakLetter(\''+dayClickSpeech(d, dayDate).replace(/'/g,"\\'")+'\')">';
+    if (isToday) html += '<div class="week-today-badge">ΣΗΜΕΡΑ</div>';
+    html += '<div class="week-day-short">'+d.short+'</div>';
+    html += '<div class="week-day-num">'+dayDate.getDate()+'</div>';
+    html += '<div class="week-day-full">'+d.full+'</div>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📆 Ο Μήνας</div>';
+  html += renderMonthGrid(now);
+  html += '</div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📅 Οι Μήνες του Χρόνου</div>';
+  html += '<div class="ab-letter-grid">';
+  GREEK_MONTHS.forEach(function(mo, i) {
+    var isCurrent = i === now.getMonth();
+    html += '<div class="month-name-card'+(isCurrent ? ' cal-today' : '')+'" onclick="speakLetter(\''+mo+'\')">';
+    html += mo;
+    if (isCurrent) html += '<div class="week-today-badge" style="position:static;transform:none;margin-top:6px;display:inline-block;">ΤΩΡΑ</div>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  html += '<div class="ab-section">';
+  html += '<div class="ab-section-title">📅 Τα Έτη</div>';
+  html += '<div class="ab-letter-grid">';
+  var currentYear = now.getFullYear();
+  for (var y = currentYear - 5; y <= currentYear + 5; y++) {
+    var isCurrentYear = y === currentYear;
+    html += '<div class="month-name-card'+(isCurrentYear ? ' cal-today' : '')+'" onclick="speakLetter(\''+numberToGreekWords(y).replace(/'/g,"\\'")+'\')">';
+    html += y;
+    if (isCurrentYear) html += '<div class="week-today-badge" style="position:static;transform:none;margin-top:6px;display:inline-block;">ΤΩΡΑ</div>';
+    html += '</div>';
+  }
+  html += '</div></div>';
+
+  html += '<div style="height:60px;"></div>';
+  document.getElementById('tab-calendar').innerHTML = html;
 }
 
 // ── STORIES ──
